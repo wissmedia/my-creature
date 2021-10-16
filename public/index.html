@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- manifest -->
+  <link rel="manifest" href="/manifest.webmanifest">
+  <!-- icon -->
+  <link rel="shortcut icon" type="image/jpg" href="/icons/72.png" />
+  <title>My Creature</title>
+</head>
+
+<body>
+  <!-- ADD -->
+  <div class="container">
+    <div class="card-panel">
+      <h3>New Creature</h3>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="name" type="text" class="validate" required>
+          <label for="name">Name</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="age" type="number" min="0" class="validate" required>
+          <label for="age">Age</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="species" type="text" class="validate" required>
+          <label for="species">Species</label>
+        </div>
+        <div class="col s12">
+          <label>Gender</label>
+          <select id="gender" class="browser-default" required>
+            <option value="" disabled selected>Choose your option</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="unknown">Unknown</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light" id="add-btn">Submit
+        <i class="material-icons right">send</i>
+      </button>
+      <span id="error"></span>
+    </div>
+  </div>
+
+  <!-- LIST -->
+  <div class="container">
+    <div class="card-panel">
+      <h3>Creature List</h3>
+      <div class="row" id="cbody"></div>
+    </div>
+  </div>
+
+  <!-- JQUERY -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- Main Logic -->
+  <script src="/index.js"></script>
+  <!-- indexedDB -->
+  <script src="/db.js"></script>
+
+  <!-- init Materialize -->
+  <script>
+    $(document).ready(function () {
+      $('select').formSelect();
+    });
+  </script>
+
+  <!-- loads service worker -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service-worker.js").then((reg) => {
+          console.log("service worker active", reg);
+        });
+      });
+    }
+  </script>
+</body>
+
+</html>
